@@ -7,4 +7,6 @@
         with_items:
           - curl
           - vim
+          - python-httplib2
 
+      
