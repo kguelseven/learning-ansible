@@ -3,9 +3,11 @@
   become: true
   tasks:
     - name: install tools
-      apt: name={{item}} state=present update_cache=yes
-      with_items:
-        - python-httplib2
+      apt: 
+        name: 
+          - python-httplib2
+        state: present 
+        update_cache: yes
 
     - name: install nginx
       apt: name=nginx state=present update_cache=yes
@@ -14,7 +16,7 @@
       service: name=nginx state=started enabled=yes
 
     - name: configure nginx site
-      template: src=../templates/nginx.conf.j2 dest=/etc/nginx/sites-available/demo mode=0644
+      template: src=templates/nginx.conf.j2 dest=/etc/nginx/sites-available/demo mode=0644
       notify: restart nginx
     
     - name: deactivate default nginx site
